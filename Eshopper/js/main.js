@@ -9,6 +9,12 @@
 /*scroll to top*/
 
 $(document).ready(function(){
+
+	$(".productinfo.text-center img").click(function(){
+		location.href = "product-details.html";
+	});
+
+
 	$(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID
