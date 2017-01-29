@@ -22,6 +22,24 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$("#ppForm").hide();	
+
+    		$("input:radio[name=forma-pago]").change(function(){
+    			var $this = $(this);
+    			if($this.val() == "pp") {
+					$("#tcForm").hide();
+					$("#ppForm").show();
+    			}
+    			else {
+    				$("#tcForm").show();
+					$("#ppForm").hide();	
+    			}
+    		});
+    	});
+    </script>
 </head><!--/head-->
 
 <body>
@@ -210,47 +228,57 @@
 			<div class="checkout-options">
 				
 				<div class="payment-options">
-				<span>
-					<label><input type="radio" name="forma-pago" checked="checked"> Tarjeta crédito</label>
-				</span>
-				<span>
-					<label><input type="radio" name="forma-pago"> Paypal</label>
-				</span>
-			</div>
-			<h3>Tarjetas</h3>
-			<p></p>
+					<span>
+						<label><input type="radio" name="forma-pago" value="tc" checked="checked"> Tarjeta crédito</label>
+					</span>
+					<span>
+						<label><input type="radio" name="forma-pago" value="pp">Paypal</label>
+					</span>
+				</div>
+			</div><!--/checkout-options-->
+
+			<form id="ppForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="RZLAJ44WHF4WS">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
+				<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+			</form>
+
+			<div id="tcForm">
+				<h3>Tarjetas</h3>
+				<p></p>
 				<ul class="nav">
 					<li>
 						<label><input type="checkbox"> VISA ****0229</label>
 					</li>
 				</ul>
-			</div><!--/checkout-options-->
+				
+				<div class="register-req">
+					<p class="">Registre una tarjeta</p>
+				</div><!--/register-req-->
 
-			<div class="register-req">
-				<p class="">Registre una tarjeta</p>
-			</div><!--/register-req-->
-
-			<div class="shopper-informations">
-				<div class="row">
-					<div class="col-sm-5 clearfix">
-						<div class="bill-to">
-							<p>Tarjeta de crédito</p>
-							<div class="form-one">
-								<form>
-									<input type="text" placeholder="Número">
-									<input type="month" value="2020-03" placeholder="Fecha expiración">
-									<input type="text" placeholder="CVV">
-								</form>
+				<div class="shopper-informations">
+					<div class="row">
+						<div class="col-sm-5 clearfix">
+							<div class="bill-to">
+								<p>Tarjeta de crédito</p>
+								<div class="form-one">
+									<form>
+										<input type="text" placeholder="Número">
+										<input type="month" value="2020-03" placeholder="Fecha expiración">
+										<input type="text" placeholder="CVV">
+									</form>
+								</div>
 							</div>
 						</div>
+						<div class="col-sm-4 hide">
+							<div class="order-message">
+								<p>Shipping Order</p>
+								<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
+								<label><input type="checkbox"> Shipping to bill address</label>
+							</div>	
+						</div>					
 					</div>
-					<div class="col-sm-4 hide">
-						<div class="order-message">
-							<p>Shipping Order</p>
-							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-							<label><input type="checkbox"> Shipping to bill address</label>
-						</div>	
-					</div>					
 				</div>
 			</div>
 			<div class="review-payment">
